@@ -1,8 +1,8 @@
 package com.example.gradle.pubsub.component;
 
-import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.core.BindingBuilder.DirectExchangeRoutingKeyConfigurer;
+import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
@@ -26,8 +26,13 @@ public class ReceiverConfig {
 	} 
 	
 	// exchange와 queue를 binding 해준다. 즉, exchange에서 데이터를 꺼내올 Queue 정의는 Receiver의 책임이다. 
+//	@Bean 
+//	public Binding binding(FanoutExchange exchange, Queue tutorialQueue1) { 
+//		return BindingBuilder.bind(tutorialQueue1).to(exchange); 
+//	}
+	
 	@Bean 
-	public Binding binding(FanoutExchange exchange, Queue tutorialQueue1) { 
+	public DirectExchangeRoutingKeyConfigurer binding(DirectExchange exchange, Queue tutorialQueue1) { 
 		return BindingBuilder.bind(tutorialQueue1).to(exchange); 
 	} 
 	

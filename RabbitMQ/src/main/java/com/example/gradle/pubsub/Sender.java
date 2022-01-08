@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +18,11 @@ public class Sender {
 	@Autowired 
 	private RabbitTemplate template; 
 	
+//	@Autowired 
+//	private FanoutExchange fanout; 
+	
 	@Autowired 
-	private FanoutExchange fanout; 
+	private DirectExchange direct; 
 	
 	AtomicInteger count = new AtomicInteger(0); 
 	
